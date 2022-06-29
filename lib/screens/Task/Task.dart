@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:insoft_online_support/screens/Dashboard/listest.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../theme/theme.dart';
@@ -99,101 +98,100 @@ class _TaskState extends State<Task> {
 
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child:
-              Text("Info:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child:
+            Text("Info:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
 
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
 Expanded(child: Column(
 
   children: [
     Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //                 textDirection:TextDirection.ltr,
-        children: [
+      crossAxisAlignment: CrossAxisAlignment.start,
+      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                 textDirection:TextDirection.ltr,
+      children: [
 
-          Text("Customer: " ,style: TextStyle(fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0.5),),
-          Text(widget.name ,style: TextStyle(fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0.5),),
+        Text("Customer: " ,style: TextStyle(fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0.5),),
+        Text(widget.name ,style: TextStyle(fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0.5),),
 
-        ],
+      ],
     ),
 
     Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
 
-        //                 textDirection:TextDirection.ltr,
-        children: [
+      //                 textDirection:TextDirection.ltr,
+      children: [
 
-          Text("Status: " ,style: TextStyle(
-                fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
-          Text(widget.status.toString(),style: TextStyle(fontSize: 15,color: bluLayerfive,fontWeight: FontWeight.w500,letterSpacing: 0),),
+        Text("Status: " ,style: TextStyle(
+              fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
+        Text(widget.status.toString(),style: TextStyle(fontSize: 15,color: bluLayerfive,fontWeight: FontWeight.w500,letterSpacing: 0),),
 
-        ],
+      ],
     ),
 
   ],
 )),
-                  Expanded(child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                Expanded(child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
 
-                        //                 textDirection:TextDirection.ltr,
-                        children: [
+                      //                 textDirection:TextDirection.ltr,
+                      children: [
 
-                          Text("Type: " ,style: TextStyle(fontSize: 15,color:txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
-                          Text( widget.type, style: TextStyle(fontSize: 15,color: bluLayerfive,fontWeight: FontWeight.w500,letterSpacing: 0),),
-                        ],
-                      ),
+                        Text("Type: " ,style: TextStyle(fontSize: 15,color:txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
+                        Text( widget.type, style: TextStyle(fontSize: 15,color: bluLayerfive,fontWeight: FontWeight.w500,letterSpacing: 0),),
+                      ],
+                    ),
 
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
 
-                        //                 textDirection:TextDirection.ltr,
-                        children: [
+                      //                 textDirection:TextDirection.ltr,
+                      children: [
 
-                          Text("Time: " ,style: TextStyle(fontSize: 15,
-                              color: txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
-                          Text(
-                            widget.time
-                            ,
-                            style: TextStyle(fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
-                        ],
-                      ),
+                        Text("Time: " ,style: TextStyle(fontSize: 15,
+                            color: txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
+                        Text(
+                          widget.time
+                          ,
+                          style: TextStyle(fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
+                      ],
+                    ),
 
-                    ],
-                  ))
-                ],
-              ),
-
-            ),
-            ListTile(
-              title:Text("Description:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
-              subtitle: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(widget.description,
-                  style: TextStyle(fontSize: 20,color: txt,),),
-              ),
-
+                  ],
+                ))
+              ],
             ),
 
-            Padding(
+          ),
+          ListTile(
+            title:Text("Description:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
+            subtitle: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Images:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
+              child: Text(widget.description,
+                style: TextStyle(fontSize: 20,color: txt,),),
             ),
+
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Images:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
+          ),
 
 
 
@@ -201,23 +199,203 @@ Padding(
   padding: const EdgeInsets.all(8.0),
   child:   Slider(bk: bk, txt: txt),
 ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Customer Info:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: txt)
-                ),
-                width: double.infinity,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Customer Info:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: txt)
+              ),
+              width: double.infinity,
 
-                child:test_list(bk: mywhite,txt: txt,)
+              child: DefaultTabController(
+                length: 3,
+                child: TabBar(
+                  //             controller: tabController,\
+                  indicatorColor: Colors.deepOrange,
+                  labelStyle: TextStyle(color: Colors.black,fontSize: 15),
+                  //indicatorColor: Colors.deepOrange,
+                  unselectedLabelColor:txt,
+
+                  labelColor: Colors.white,
+
+                  indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: bluLayerfive),
+
+                  tabs: [
+
+                    Tab(text: 'Address',),
+                    Tab(text: 'Mob.Acc',),
+                    Tab(text: 'Odoo Acc',)
+
+                  ],),
               ),
             ),
+          ),
+          Container(
+            width: double.infinity,
+            color: mywhite,
+            height:  MediaQuery.of(context).size.height/4,
+            child: DefaultTabController(
+              length: 3,
+              child: TabBarView(
+                //controller: tabController,
+                children: [
+
+Column(
+  children: [
+    Row(
+      children: [
+        Expanded(child: Text("Key",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
+        Expanded(child: Text("Value",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
+
+      ],
+    ),
+
+    Row(
+      children: [
+        Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+        Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+      ],
+    ),
+    Row(
+      children: [
+        Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+        Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+      ],
+    ),
+    Row(
+      children: [
+        Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+        Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+      ],
+    ),
+    Row(
+      children: [
+        Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+        Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+      ],
+    ),
+    Row(
+      children: [
+        Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+        Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+      ],
+    ),
+  ],
+),
+
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
+
+                        ],
+                      ),
+
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
+
+                        ],
+                      ),
+
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
+                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
+
+                        ],
+                      ),
+                    ],
+                  ),
 
 
+
+    ],
+              ),
+            ),
+          ),
 
 
 
@@ -226,26 +404,25 @@ Padding(
 
 
     Container(
-    padding: EdgeInsets.only(bottom: 35.0),
+    padding: EdgeInsets.only(bottom: 22.0),
 
     child: Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: <Widget>[
-        Container(
-          width: MediaQuery.of(context).size.width-100,
-          child: MaterialButton(onPressed: (){
-            msg(context);
-          },
-          color: txt,
+      Container(
+        width: MediaQuery.of(context).size.width-100,
+        child: MaterialButton(onPressed: (){
+          msg(context);
+        },
+        color: txt,
 
-          child: Text("Change Status",style: TextStyle(color: mywhite),),),
-        )
+        child: Text("Change Status",style: TextStyle(color: mywhite),),),
+      )
     ],
     ),
     ),
 
-          ],
-        ),
+        ],
       ),
 
     );
