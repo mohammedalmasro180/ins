@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:insoft_online_support/main.dart';
-import 'package:insoft_online_support/screens/Dashboard/CreateMode.dart';
+
 import 'package:insoft_online_support/screens/Dashboard/Dashboard_done.dart';
 import 'package:insoft_online_support/screens/Dashboard/FeedbackList.dart';
 import 'package:insoft_online_support/screens/Dashboard/bunnerhome.dart';
@@ -17,14 +17,12 @@ import 'package:flutter/material.dart';
 import 'package:insoft_online_support/screens/Dashboard/FeedbackList.dart';
 import 'package:insoft_online_support/theme/theme.dart';
 import 'package:insoft_online_support/theme/theme_colors.dart';
-import 'package:insoft_online_support/models/feedback.dart' as fb;
+
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../utils/clients/client.dart';
 import '../../utils/providers/feedback_provider.dart';
 import '../Task/Task.dart';
-
-bool mode = true;
 
 
  int? count;
@@ -36,6 +34,8 @@ class Dashboard extends StatefulWidget {
   _DashboardState createState() => _DashboardState();
 }
 class _DashboardState extends State<Dashboard> {
+bool darkmode=true;
+ // bool darkmode = true;
 
   final LocalStorage storage = new LocalStorage('todo_app');
 
@@ -49,8 +49,8 @@ late List<String> data;
   //  feedbackMap=feedbacks.infoShowToJson();
     pageController = PageController(initialPage: 1, viewportFraction: 0.75);
     // TODO: implement initState
- //   getmode(mode);
-    //CreateMode.createmode(appbar, continer, txt, bk, mywhite);
+ //   getdarkmode(darkmode);
+    //Createdarkmode.createdarkmode(appbar, continer, txt, bk, mywhite);
 removeperf();
 
     super.initState();
@@ -69,13 +69,13 @@ removeperf();
 
     // if(
     //
-    // storage.getItem('todos').toString()=="lightmode"
+    // storage.getItem('todos').toString()=="lightdarkmode"
     //
     // )
     //
-    // {mode=true;}
+    // {darkmode=true;}
     // else
-    // {mode=false;}
+    // {darkmode=false;}
      Color appbar;
     Color continer;
     Color bkcotinner;
@@ -83,7 +83,7 @@ removeperf();
     Color bk;
     Color mywhite;
      Color sh;
-    if (mode) {
+    if (darkmode) {
       appbar = bluLayerzero;
       continer = bluLayerfive;
       txt = bluLayerfive;
@@ -124,21 +124,17 @@ return Scaffold(
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: IconButton(icon: Icon(Icons.settings),color:txt, onPressed: () {
-                      msg(context,mywhite,txt);
+                    child: IconButton(icon: Icon(Icons.settings),color:txt, onPressed: () async{
+                     await msg(context,txt,mywhite);
+                     setState(() {
+
+                     });
                     },),
                   ),
 
 
 
-                  Switch(
-                      value: mode,
-                      onChanged: (value) {
-                        setState(() {
-                          mode = value;
-                          saveperf(value.toString() );
-                        });
-                      }),
+
                 ]
             ),
           ]
@@ -152,9 +148,9 @@ return Scaffold(
   body: Container(
     color: mywhite,
     child: Column(
-
       children: [
         Container(
+
           width: double.infinity,
           height: 220,
          color: mywhite,
@@ -227,6 +223,67 @@ return Scaffold(
   ),
     );
   }
+Future<void> msg(BuildContext context,Color txt,Color BK)  {
+  return showDialog
+  <void>(
+    context: context,
+    barrierDismissible: false, // user must t\\ap button!
+    builder: (BuildContext context) {
+      return StatefulBuilder(
+
+        builder:(context, setState) =>  Container(
+
+          child: AlertDialog(
+            //title: const Icon(Icons.error,color: Colors.red,),
+            content:  Container(
+              height: 180,
+
+              child: Column(
+                children: [
+
+                  Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child:   Text("Appearance",style: TextStyle(color: txt,fontSize: 25),),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+
+                    border: Border.all(width: 2,color: txt),
+                    ),
+                    child: AnimatedToggle(values: ['Light','Dark'],
+                        onToggleCallback: (value){
+                      //    initialPosition=darkmode;
+                          setState(()=>
+
+                          darkmode?darkmode=false:darkmode=true
+                          );
+                          setState((){});
+                        }, backgroundColor: BK, buttonColor: txt, textColor: Colors.white),
+                  )
+
+
+                ],
+              ),
+            ),
+            actions: [
+
+              MaterialButton(
+                color: txt,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("Apply",style: TextStyle(color:BK),),),
+
+            ],
+          ),
+        ),
+      );
+
+    },
+  );
+}
+
+
 }
 
 /// stateful widget that the main application instantiates
@@ -253,27 +310,27 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 
-saveperf(String mode)async  {
+saveperf(String darkmode)async  {
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-  sharedPreferences.setString("mode", mode);
-  print(sharedPreferences.get("mode"));
+  sharedPreferences.setString("darkmode", darkmode);
+  print(sharedPreferences.get("darkmode"));
 
 }
 //done_number
-getmode(String  mode)async  {
+getdarkmode(String  darkmode)async  {
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
- //mode=bool.hasEnvironment( sharedPreferences.get("mode").toString());
-  String shared=sharedPreferences.get("mode").toString();
+ //darkmode=bool.hasEnvironment( sharedPreferences.get("darkmode").toString());
+  String shared=sharedPreferences.get("darkmode").toString();
   if(shared!=null)
-    mode='xxxxxxx';
+    darkmode='xxxxxxx';
   else
-    mode='';
- print(mode);
+    darkmode='';
+ print(darkmode);
 
 }
 get_done_number()async  {
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-  //mode=bool.hasEnvironment( sharedPreferences.get("mode").toString());
+  //darkmode=bool.hasEnvironment( sharedPreferences.get("darkmode").toString());
  String done_number=sharedPreferences.get("done_number").toString();
   print("ppppppppppppppppppp="+done_number);
   return done_number;
@@ -284,42 +341,17 @@ get_done_number()async  {
 
 
 
-savperf(String mode)async  {
+savperf(String darkmode)async  {
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-  sharedPreferences.setString("mode", mode);
-  print(sharedPreferences.get("mode"));
+  sharedPreferences.setString("darkmode", darkmode);
+  print(sharedPreferences.get("darkmode"));
 
 }
 
-Future<void> msg(BuildContext context,Color txt,Color BK) async {
-  return showDialog
-  <void>(
-    context: context,
-    barrierDismissible: false, // user must t\\ap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        //title: const Icon(Icons.error,color: Colors.red,),
-        content:  Column(
-          children: [
-
-Padding(
-  padding: const EdgeInsets.all(8.0),
-  child:   Text("Appearance",style: TextStyle(color: txt,fontSize: 25),),
-),
-            AnimatedToggle(values: ['Dark','Light'], backgroundColor: txt, buttonColor: txt, textColor: Colors.white)
-
-
-          ],
-        )
-      );
-
-    },
-  );
-}
 
 removeperf()async{
   SharedPreferences preferences=await SharedPreferences.getInstance();
-  preferences.remove("mode");
+  preferences.remove("darkmode");
 
 }
 Future<String>

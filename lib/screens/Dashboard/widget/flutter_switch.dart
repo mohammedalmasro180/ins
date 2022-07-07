@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:insoft_online_support/main.dart';
 
 class AnimatedToggle extends StatefulWidget {
   final List<String> values;
-  //final ValueChanged onToggleCallback;
+  final ValueChanged onToggleCallback;
   final Color backgroundColor;
   final Color buttonColor;
   final Color textColor;
 
   AnimatedToggle({
     required this.values,
-    //required this.onToggleCallback,
+    required this.onToggleCallback,
    required this.backgroundColor ,
    required this.buttonColor ,
    required this.textColor ,
@@ -20,7 +21,7 @@ class AnimatedToggle extends StatefulWidget {
 }
 
 class _AnimatedToggleState extends State<AnimatedToggle> {
-  bool initialPosition = true;
+ static bool initialPosition = darkmode;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,8 +37,8 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
               if (!initialPosition) {
                 index = 1;
               }
-  //            widget.onToggleCallback(index);
-//              setState(() {});
+              widget.onToggleCallback(index);
+              setState(() {});
             },
             child: Container(
               width: Get.width * 0.6,
@@ -60,7 +61,7 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
                         fontFamily: 'Rubik',
                         fontSize: Get.width * 0.045,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xAA000000),
+                        color: Colors.green,
                       ),
                     ),
                   ),
@@ -87,7 +88,7 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
                 style: TextStyle(
                   fontFamily: 'Rubik',
                   fontSize: Get.width * 0.045,
-                  color: widget.textColor,
+                  color: Colors.deepOrange,
                   fontWeight: FontWeight.bold,
                 ),
               ),

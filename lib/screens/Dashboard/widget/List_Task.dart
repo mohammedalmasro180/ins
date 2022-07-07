@@ -22,7 +22,10 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         backgroundColor: widget.bk,
         appBar: AppBar(
-          shape: Border.all(width: 2,color: widget.txt),
+          shape:
+          Border.all(width: 2,color: widget.txt),
+
+
           backgroundColor: widget.bk,
           title:
           TabBar(indicatorColor: Colors.deepOrange,

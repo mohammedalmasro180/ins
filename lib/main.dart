@@ -19,7 +19,7 @@ import 'package:insoft_online_support/utils/providers/feedback_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'theme/theme.dart';
 import 'package:provider/provider.dart';
-bool darkmode=false;
+bool darkmode=true;
  final ThemeData _darkTheme = ThemeData(
   accentColor: Colors.red,
 
