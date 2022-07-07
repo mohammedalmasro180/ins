@@ -130,6 +130,44 @@ class Client {
 
   }
 
+  static  listymhdgetFeedbacks({String? status,required List<String>  my_data}) async {
+    var response = await http.get(
+      Uri.parse(serverUrl + _feedback+(status!=null?"?status=$status":'') ),
+      headers: {
+        'Authorization': 'Bearer ' + getToken(),
+        'accept': _acceptHeader,
+        'Content-type': _contentType,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      String jsonsDataString = response.body.toString();
+
+      var    _data = jsonDecode(jsonsDataString);
+      my_data= _data['data'][1]as List<String> ;
+      return my_data;
+
+
+    }
+
+  }
+static  Future getdata() async{
+
+    Uri uri = Uri.parse("https://test2.insoftonline.de/mobile/api/v1/customer/1");
+
+    http.Response response = await http.get(uri);
+    String jsonsDataString = response.body.toString();
+
+    var    _data = jsonDecode(jsonsDataString);
+    print(_data);
+
+
+    return _data;
+
+  }
+
+
+//https://test2.insoftonline.de/mobile/api/v1/customer/1
 
 
   static Future<bool> setFeedbackStatus(

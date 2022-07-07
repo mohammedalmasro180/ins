@@ -13,7 +13,8 @@ import '../models/enums/feedback_enums.dart';
 import '../utils/colors.dart';
 
 class FeedBackWidget extends StatefulWidget {
-  final fd.Feedback feedback;
+  final
+  fd.Feedback feedback;
   final bool isOpen;
   const FeedBackWidget({
     Key? key,
@@ -37,7 +38,8 @@ class _FeedBackWidgetState extends State<FeedBackWidget> {
 
   @override
   Widget build(BuildContext context){
-    return GestureDetector(
+    return
+      GestureDetector(
       onTap: () {
         if(!widget.isOpen) {
           Navigator.push(
@@ -86,15 +88,9 @@ class _FeedBackWidgetState extends State<FeedBackWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  feedbackMap.keys.elementAt(index) + ": ",
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .subtitle1,
-                                ),
-                                if (feedbackMap.keys
-                                        .elementAt(index)
-                                        .toLowerCase() !=
-                                    "customer")
+
+                                    feedbackStatusValue[FeedbackStatus]!.length.toString()),
+
 
                                   SizedBox(
                                     width:MediaQuery.of(context).size.width-200 ,

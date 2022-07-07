@@ -1,3 +1,7 @@
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:insoft_online_support/screens/Dashboard/theme_service.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -12,11 +16,30 @@ import 'package:insoft_online_support/utils/clients/data.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:insoft_online_support/utils/providers/customers_provider.dart';
 import 'package:insoft_online_support/utils/providers/feedback_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'theme/theme.dart';
 import 'package:provider/provider.dart';
+bool darkmode=false;
+ final ThemeData _darkTheme = ThemeData(
+  accentColor: Colors.red,
 
+  brightness: Brightness.dark,
+  primaryColor: Colors.amber,
+
+);
+
+ThemeData _lightTheme = ThemeData(
+    accentColor: Colors.pink,
+    brightness: Brightness.light,
+    primaryColor: bluLayerzero
+);
 void main() async{
+
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences.getInstance().then(((instance){
+    //darkmode=instance.getBool('mode')!;
+  })  );
   await EasyLocalization.ensureInitialized();
   await initAppData();
   runApp(MultiProvider(
@@ -25,6 +48,7 @@ void main() async{
         supportedLocales: const [Locale('en')],
         path: 'assets/translations',
         saveLocale: true,
+
         fallbackLocale: const Locale('en'),
         child:   MyApp()
     ),
@@ -37,30 +61,18 @@ void main() async{
 }
 
 class MyApp extends StatelessWidget {
+
    MyApp({Key? key}) : super(key: key);
 
   @override
-  ThemeData _darkTheme = ThemeData(
-    accentColor: Colors.red,
-    brightness: Brightness.dark,
-    primaryColor: Colors.amber,
-
-  );
-
-   ThemeData _lightTheme = ThemeData(
-       accentColor: Colors.pink,
-       brightness: Brightness.light,
-       primaryColor: bluLayerzero
-   );
   Widget build(BuildContext context) => ThemeProvider(
 
     initTheme:  (themeMode.brightness ==MyThemes.darkTheme.brightness) ? MyThemes.darkTheme : MyThemes.lightTheme,
-    builder:  (context,theme) => MaterialApp.router(
+    builder:  (context,theme) => GetMaterialApp.router(
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
       title: 'Insoft Online Support',
       debugShowCheckedModeBanner: false,
-      theme: _lightTheme,
 
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

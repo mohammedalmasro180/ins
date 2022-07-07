@@ -6,6 +6,9 @@ class MyThemes {
   static final myBlue1= MyColors().bLue1;
   static final myBlue2= MyColors().bLue2;
   static const fontFamily="Cairo";
+  static const CariofontFamily="Cairo";
+
+
 
   static final darkTheme = ThemeData(
     appBarTheme: const AppBarTheme(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insoft_online_support/theme/theme_colors.dart';
 
 import '../constants.dart';
 
@@ -21,7 +22,7 @@ class RoundedButton extends StatelessWidget {
         width: size.width * 0.8,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: kPrimaryColor,
+          color: bluLayerthere,
         ),
 
         padding: EdgeInsets.symmetric(vertical: 20),

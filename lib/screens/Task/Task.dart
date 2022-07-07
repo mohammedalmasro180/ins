@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:insoft_online_support/main.dart';
+import 'package:insoft_online_support/screens/Dashboard/listest.dart';
+import 'package:insoft_online_support/screens/Dashboard/widget/myappbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../theme/theme.dart';
@@ -15,11 +18,11 @@ class Task extends StatefulWidget {
   @override
   _TaskState createState() => _TaskState();
 }
+bool mode=true;
 
 class _TaskState extends State<Task> {
   String md='';
 
-  bool mode=true;
 
   late PageController pageController;
   @override
@@ -27,7 +30,7 @@ class _TaskState extends State<Task> {
   void initState() {
     pageController = PageController(initialPage: 1, viewportFraction: 0.75);
     // TODO: implement initState
-    getmode(mode);
+
 
 
     super.initState();
@@ -41,7 +44,6 @@ class _TaskState extends State<Task> {
   }
   @override
   Widget build(BuildContext context) {
-
     Color appbar;
     Color continer;
     Color txt;
@@ -49,7 +51,7 @@ class _TaskState extends State<Task> {
     Color mywhite;
     if(mode)
     {
-      appbar=bluLayerone;
+      appbar=bluLayerzero;
       continer=bluLayerfive;
       txt=bluLayerfive;
       mywhite=Colors.white;
@@ -69,41 +71,48 @@ class _TaskState extends State<Task> {
 
     return Scaffold(
       backgroundColor: mywhite,
-      appBar: AppBar(
+      appBar:      AppBar(
 
-        title: Text("Dashboard",style: TextStyle(color: txt),),
-        backgroundColor: appbar,
-        actions: [
-          Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Icon(Icons.update,size: 25,color: bluLayerfive,),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(Icons.settings,size: 25,color: txt,),
-                ),
+          title: Text("Task",style: TextStyle(color: txt),),
+          backgroundColor: appbar,
+          actions: [
 
-                Switch(
-                    value: mode,
-                    onChanged: (value) {
-                      setState(() {
-                        mode = value;
-                   //     saveperf(value.toString() );
-                      });
-                    }),
-              ]
-          ),
+            Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Icon(Icons.update,size: 25,color:txt,),
+                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: IconButton(icon: Icon(Icons.settings),color:txt, onPressed: () {
+                  //     modech(context,txt,bk);
+                  //   },),
+                  // ),
 
-        ],
+                  Switch(
+                      value: mode,
+                      onChanged: (value) {
+                        setState(() {
+                          mode = value;
+                          saveperf(value.toString() );
+                        });
+                      }),
+                ]
+            ),
+          ]
+
+
+
+
       ),
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: [
-          Padding(
+
+        Padding(
             padding: const EdgeInsets.all(8.0),
             child:
             Text("Info:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
@@ -137,7 +146,7 @@ Expanded(child: Column(
 
         Text("Status: " ,style: TextStyle(
               fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
-        Text(widget.status.toString(),style: TextStyle(fontSize: 15,color: bluLayerfive,fontWeight: FontWeight.w500,letterSpacing: 0),),
+        Text(widget.status.toString(),style: TextStyle(fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
 
       ],
     ),
@@ -153,7 +162,7 @@ Expanded(child: Column(
                       children: [
 
                         Text("Type: " ,style: TextStyle(fontSize: 15,color:txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
-                        Text( widget.type, style: TextStyle(fontSize: 15,color: bluLayerfive,fontWeight: FontWeight.w500,letterSpacing: 0),),
+                        Text( widget.type, style: TextStyle(fontSize: 15,color: txt,fontWeight: FontWeight.w500,letterSpacing: 0),),
                       ],
                     ),
 
@@ -178,14 +187,9 @@ Expanded(child: Column(
             ),
 
           ),
-          ListTile(
-            title:Text("Description:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
-            subtitle: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(widget.description,
-                style: TextStyle(fontSize: 20,color: txt,),),
-            ),
-
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Description:",style: TextStyle(fontSize: 30,color: txt,fontWeight: FontWeight.w700),),
           ),
 
           Padding(
@@ -206,194 +210,13 @@ Padding(
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
+              height: MediaQuery.of(context).size.height/3,
               decoration: BoxDecoration(
                 border: Border.all(color: txt)
               ),
               width: double.infinity,
 
-              child: DefaultTabController(
-                length: 3,
-                child: TabBar(
-                  //             controller: tabController,\
-                  indicatorColor: Colors.deepOrange,
-                  labelStyle: TextStyle(color: Colors.black,fontSize: 15),
-                  //indicatorColor: Colors.deepOrange,
-                  unselectedLabelColor:txt,
-
-                  labelColor: Colors.white,
-
-                  indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: bluLayerfive),
-
-                  tabs: [
-
-                    Tab(text: 'Address',),
-                    Tab(text: 'Mob.Acc',),
-                    Tab(text: 'Odoo Acc',)
-
-                  ],),
-              ),
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            color: mywhite,
-            height:  MediaQuery.of(context).size.height/4,
-            child: DefaultTabController(
-              length: 3,
-              child: TabBarView(
-                //controller: tabController,
-                children: [
-
-Column(
-  children: [
-    Row(
-      children: [
-        Expanded(child: Text("Key",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
-        Expanded(child: Text("Value",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
-
-      ],
-    ),
-
-    Row(
-      children: [
-        Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-        Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-      ],
-    ),
-    Row(
-      children: [
-        Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-        Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-      ],
-    ),
-    Row(
-      children: [
-        Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-        Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-      ],
-    ),
-    Row(
-      children: [
-        Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-        Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-      ],
-    ),
-    Row(
-      children: [
-        Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-        Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-      ],
-    ),
-  ],
-),
-
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
-
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-                        ],
-                      ),
-                    ],
-                  ),
-
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 18,color: txt,fontWeight: FontWeight.w500),)),
-
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: Text("Key",style: TextStyle(fontSize: 14,color: txt),)),
-                          Expanded(child: Text("Value",style: TextStyle(fontSize: 14,color: txt),))
-
-                        ],
-                      ),
-                    ],
-                  ),
-
-
-
-    ],
-              ),
+              child:test_list(txt: txt,bk: mywhite,),
             ),
           ),
 
@@ -403,23 +226,32 @@ Column(
 
 
 
-    Container(
-    padding: EdgeInsets.only(bottom: 22.0),
+//SizedBox(height: MediaQuery.of(context).size.height-950,),
+    Align(
+      alignment: Alignment.bottomRight,
+      child: Container(
+      padding: EdgeInsets.only(bottom: 22.0),
 
-    child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    children: <Widget>[
-      Container(
-        width: MediaQuery.of(context).size.width-100,
-        child: MaterialButton(onPressed: (){
-          msg(context);
-        },
-        color: txt,
+      child: Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: <Widget>[
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: 80,
+          child: MaterialButton(onPressed: (){
+            msg(context,txt,txt);
+          },
+          color: txt,
 
-        child: Text("Change Status",style: TextStyle(color: mywhite),),),
-      )
-    ],
-    ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Change Status",style: TextStyle(color: mywhite,fontSize: 20),),
+          ),),
+        )
+      ],
+      ),
+      ),
     ),
 
         ],
@@ -477,7 +309,28 @@ class _SliderState extends State<Slider> {
   }
 }
 
-Future<void> msg(BuildContext context) async {
+ Future<void> msg(BuildContext context,Color txt,Color bk) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must t\\ap button!
+    builder: (BuildContext context) {
+      return
+        AlertDialog(
+          content: StatefulBuilder(  // You need this, notice the parameters below:
+          builder: (BuildContext context, StateSetter setState) {
+        return
+          SingleChildScrollView(
+            child: MyStatefulWidget(bk: bk,txt: txt,)
+
+          );
+          }
+          )
+        );
+          },
+  );
+}
+
+Future<void> modech(BuildContext context,Color txt,Color bk) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must t\\ap button!
@@ -489,20 +342,20 @@ Future<void> msg(BuildContext context) async {
             children: [
               Center(
                 child: MaterialButton(
-                  color: Colors.lightBlueAccent,
+                  color: bk,
                   onPressed: () {
 
                   },
-                  child: Text("Assigned",style: TextStyle(color: Colors.white),),),
+                  child: Text("Drak",style: TextStyle(color: Colors.white),),),
 
               ),
               Center(
                 child: MaterialButton(
-                  color: Colors.lightBlueAccent,
+                  color: bk,
                   onPressed: () {
 
                   },
-                  child: Text("Done",style: TextStyle(color: Colors.white),),),
+                  child: Text("Light",style: TextStyle(color:Colors.white),),),
 
               ),
             ],
@@ -524,5 +377,98 @@ getmode(bool   mode)async  {
 extension BoolParsing on String {
   bool parseBool() {
     return this.toLowerCase() == 'true';
+  }
+}
+
+enum SingingCharacter { lafayette, jefferson }
+
+class MyStatefulWidget extends StatefulWidget {
+
+  final Color bk;
+  final Color txt;
+  const MyStatefulWidget({Key? key ,required this.bk,required this.txt}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  SingingCharacter? _character = SingingCharacter.lafayette;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text("Set Status As",
+            style: TextStyle(fontSize: 25,color: widget.txt),
+          ),
+        ),
+        ListTile(
+          title:  Text('Not Assigned',
+
+            style: TextStyle(fontSize: 15,color: widget.txt),),
+          leading: Radio<SingingCharacter>(
+            value: SingingCharacter.lafayette,
+            groupValue: _character,
+            onChanged: (SingingCharacter? value) {
+              setState(() {
+                _character = value;
+              });
+            },
+          ),
+        ),
+        ListTile(
+          title: Text('Assign to me',
+            style: TextStyle(fontSize: 15,color: widget.txt),),
+          leading: Radio<SingingCharacter>(
+            value: SingingCharacter.jefferson,
+            groupValue: _character,
+            onChanged: (SingingCharacter? value) {
+              setState(() {
+                _character = value;
+              });
+            },
+          ),
+        ),
+
+        ListTile(
+          title:Text('Done',
+            style: TextStyle(fontSize: 15,color: widget.txt),),
+          leading: Radio<SingingCharacter>(
+            value: SingingCharacter.jefferson,
+            groupValue: _character,
+            onChanged: (SingingCharacter? value) {
+              setState(() {
+                _character = value;
+              });
+            },
+          ),
+        ),
+
+        Center(
+          child: MaterialButton(
+            color: widget.bk,
+            onPressed: () {
+
+            },
+            child: Text("Save",
+    style: TextStyle(fontSize: 15,color: Colors.white),),),
+
+        ),
+
+        Center(
+          child: MaterialButton(
+            color: widget.bk,
+            onPressed: () {
+
+            },
+            child: Text("Cancel",
+              style: TextStyle(fontSize: 15,color: Colors.white),),),
+
+        ),
+      ],
+    );
   }
 }

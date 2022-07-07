@@ -19,8 +19,11 @@ class FeedbackList extends StatefulWidget {
 
   final Color bk;
   final Color txt;
+  final Color sh;
 
-  const FeedbackList({Key? key,required this.txt,required this.bk}) : super(key: key);
+
+
+  const FeedbackList({Key? key,required this.txt,required this.bk,required this.sh}) : super(key: key);
 
   @override
   _FeedbackListState createState() => _FeedbackListState();
@@ -31,6 +34,8 @@ class _FeedbackListState extends State<FeedbackList> {
   @override
   Widget build(BuildContext context) {
 
+    final ScrollController horizontalScroll = ScrollController();
+    final ScrollController verticalScroll = ScrollController();
 
   return FutureBuilder(
         future: Client.mhdgetFeedbacks(),
@@ -46,6 +51,7 @@ class _FeedbackListState extends State<FeedbackList> {
         itemBuilder: (context,i) {
 
           return
+
             InkWell(
               onTap: (){
 
@@ -66,7 +72,21 @@ class _FeedbackListState extends State<FeedbackList> {
               child: Container(
                 width:  MediaQuery.of(context).size.width-15,
                 margin: const EdgeInsets.all(10),
- color: widget.bk,
+                decoration: BoxDecoration(
+                  color: widget.bk,
+                  boxShadow:
+                  <BoxShadow>[
+                    BoxShadow(
+                        color: widget.sh,
+                        blurRadius: 10.0,
+                        spreadRadius: 5,
+                        offset: Offset(0.75, 0.75)
+                    ),
+                  ],
+
+                ),
+
+
  //               decoration: MyThemes.cardDecoration(context),
                 child: Row(
                     children: [
@@ -77,6 +97,14 @@ class _FeedbackListState extends State<FeedbackList> {
                             width: 9,
                             height: 90,
                             decoration: BoxDecoration(
+                              boxShadow:
+                              <BoxShadow>[
+                                BoxShadow(
+                                    color: mygray,
+                                    blurRadius: 150.0,
+                                    offset: Offset(0.0, 0.75)
+                                ),
+                              ],
                               borderRadius: const BorderRadiusDirectional.only(
 
                               ),
@@ -87,7 +115,7 @@ class _FeedbackListState extends State<FeedbackList> {
 
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
+                        padding: const EdgeInsets.all(18.0),
                         child: Container(
                           height: 100,
                           width: 100,
@@ -103,7 +131,7 @@ class _FeedbackListState extends State<FeedbackList> {
 
 
 
-          Colors.deepOrange,
+          myred,
 
 
           borderRadius:BorderRadius.circular(10)
@@ -264,6 +292,8 @@ class _UnassignedState extends State<Unassigned> {
   @override
   Widget build(BuildContext context) {
 
+    final ScrollController horizontalScroll = ScrollController();
+    final ScrollController verticalScroll = ScrollController();
     return FutureBuilder(
         future: Client.mhdgetFeedbacks(),
         builder:(BuildContext context, AsyncSnapshot snapshot) {
@@ -272,8 +302,10 @@ class _UnassignedState extends State<Unassigned> {
 
               ListView.builder(
 
+
                   itemCount:
                   snapshot.data.length,
+
 
                   itemBuilder: (context,i) {
 
@@ -311,9 +343,19 @@ class _UnassignedState extends State<Unassigned> {
                                         width: 9,
                                         height: 90,
                                         decoration: BoxDecoration(
+
+                                          boxShadow:
+                                          <BoxShadow>[
+                                          BoxShadow(
+                                            color: mygray,
+                                            blurRadius: 150.0,
+                                            offset: Offset(0.0, 0.75)
+                                          ),
+                                          ],
                                           borderRadius: const BorderRadiusDirectional.only(
 
                                           ),
+
                                           //     color: Colors.deepOrange,
                                         ),
                                       ),
@@ -337,7 +379,7 @@ class _UnassignedState extends State<Unassigned> {
 
 
 
-                                            Colors.deepOrange,
+                                            myred,
 
 
                                             borderRadius:BorderRadius.circular(10)

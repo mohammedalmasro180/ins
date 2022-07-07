@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:insoft_online_support/theme/theme_colors.dart';
 import 'package:insoft_online_support/utils/clients/client.dart';
 import '../../constants.dart';
 import 'components/cancel_button.dart';
@@ -75,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen>
                   height: 100,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: kPrimaryColor),
+                      color: bluLayerthere),
                 ),
               )),
 
@@ -103,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen>
                   height: 200,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: kPrimaryColor),
+                      color: bluLayerthere),
                 ),
               )),
 
@@ -185,10 +186,10 @@ class _LoginScreenState extends State<LoginScreen>
             child: Container(
               height: size.height,
               width: size.width,
-              color: kPrimaryColor.withOpacity(0.2),
+              color: bluLayerthere.withOpacity(0.2),
               child: const Center(
                 child: CircularProgressIndicator.adaptive(
-                  valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor),
+                  valueColor: AlwaysStoppedAnimation<Color>(bluLayerthere),
                 ),
               ),
             ),
@@ -210,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen>
               topLeft: Radius.circular(100),
               topRight: Radius.circular(100),
             ),
-            color: kBackgroundColor),
+            color:bluLayerthere),
         alignment: Alignment.center,
         child: ScaleTransition(
           scale: Tween<double>(begin: 1.0, end: 0.0)

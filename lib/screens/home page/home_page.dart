@@ -223,7 +223,9 @@ class _HomePageState extends State<HomePage>
                                   style: Theme.of(context).textTheme.headline6,
                                 ),
                                 Text(
-                                  "50".tr(),
+
+                                    Provider.of<FeedbacksProvider>(context).feedbacks
+                                        .length.toString(),
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline6!
@@ -316,7 +318,7 @@ class _HomePageState extends State<HomePage>
                   children: List.generate(
                       Provider.of<FeedbacksProvider>(context).feedbacks
                           .length,
-                      (index) => FeedBackWidgetmhd(
+                      (index) => FeedBackWidget(
                             feedback:  Provider.of<FeedbacksProvider>(context).feedbacks
                                 .elementAt(index),
                           )

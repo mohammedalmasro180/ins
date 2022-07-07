@@ -39,6 +39,8 @@ const mybkg=Color(0xfffafafa);
 const myred=Color(0xffdf2f2f);
 const mygreen=Color(0xff5dc359);
 const myyallow=Color(0xfffdcf00);
+const mygray=Color(0xffeeeeee);
+
 
 const appbar=Color(0xff98c8dc);
 const Containercolor=Color(0xff98c8dc);
